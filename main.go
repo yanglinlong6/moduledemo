@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"moduledemo/common"
+	"moduledemo/config"
 	"moduledemo/mypackage" // 导入同一项目下的mypackage包
-	"moduledemo/routes"
 	"moduledemo/yanglinlong"
 )
 
@@ -14,6 +14,8 @@ func main() {
 	fmt.Println("main", hello)
 
 	fmt.Println("杨龙龙")
+	// 初始化nacos
+	config.GetNacosConfig()
 	// 初始化数据库(mysql)
 	common.InitMysql()
 	//host := "0.0.0.0"
@@ -48,8 +50,8 @@ func main() {
 	//	})
 	//})
 	//// 注册所有路由
-	r := routes.InitRoutes()
+	//r := routes.InitRoutes()
 	// 服务启动
-	defer r.Run(":8899")
+	//defer r.Run(":8899")
 
 }
