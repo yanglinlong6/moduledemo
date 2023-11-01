@@ -22,6 +22,7 @@ func InitBaseRoutes(r *gin.RouterGroup) gin.IRoutes {
 	base := r.Group("/yang")
 	{
 		base.GET("yang", controller.Yang.Hello)
+		base.GET("save", controller.Yang.Save)
 		base.GET("ping", controller.Demo)
 	}
 

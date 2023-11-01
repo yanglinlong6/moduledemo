@@ -6,6 +6,7 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
 	"log"
+	"moduledemo/model"
 )
 
 // 全局mysql数据库变量
@@ -14,9 +15,9 @@ var DB *gorm.DB
 // 初始化mysql数据库
 func InitMysql() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&collation=%s&%s",
-		"dev_user",
-		"df234fl",
-		"192.168.3.190",
+		"root",
+		"986203",
+		"112.74.125.238",
 		3306,
 		"neshield",
 		"utf8",
@@ -42,6 +43,11 @@ func InitMysql() {
 
 	// 开启mysql日志
 	db.Debug()
+	// 自动生成建表语句
+	err = db.AutoMigrate(&model.TNesDevice{}, &model.User{})
+	if err != nil {
+		log.Println(err)
+	}
 
 	// 全局DB赋值
 	DB = db

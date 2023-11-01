@@ -23,6 +23,14 @@ func (m *YangController) Hello(c *gin.Context) {
 
 }
 
+func (m *YangController) Save(c *gin.Context) {
+	req := new(request.Yang)
+	Run(c, req, func() (interface{}, interface{}) {
+		return service.Save(c, req)
+	})
+
+}
+
 func Demo(c *gin.Context) {
 	c.JSON(http.StatusOK, tools.H{"code": 200, "msg": "ok", "data": "pong"})
 }

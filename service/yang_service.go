@@ -19,3 +19,14 @@ func YangService(c *gin.Context, req interface{}) (data interface{}, rspError in
 	return response.LinLong{Name: r.Name, Yang: r.Yang, List: list, YangList: yangList}, nil
 	//return response.LinLong{Name: r.Name, Yang: r.Yang, YangList: yangList}, nil
 }
+
+func Save(c *gin.Context, req interface{}) (data interface{}, rspError interface{}) {
+	r, _ := req.(*request.Yang)
+	_ = c
+	device := new(model.TNesDevice)
+	device.Sn = "1500101471"
+	device.ModelName = "nihao"
+	_ = common.DB.Save(&device)
+	return response.LinLong{Name: r.Name, Yang: r.Yang}, nil
+	//return response.LinLong{Name: r.Name, Yang: r.Yang, YangList: yangList}, nil
+}
